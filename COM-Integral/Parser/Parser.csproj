@@ -1,0 +1,147 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>9.0.30729</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{B66BEACE-2567-4077-9DCB-4358AEE68C90}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>MathParser</RootNamespace>
+    <AssemblyName>Parser</AssemblyName>
+    <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <SccProjectName>SAK</SccProjectName>
+    <SccLocalPath>SAK</SccLocalPath>
+    <SccAuxPath>SAK</SccAuxPath>
+    <SccProvider>SAK</SccProvider>
+    <FileUpgradeFlags>
+    </FileUpgradeFlags>
+    <OldToolsVersion>3.5</OldToolsVersion>
+    <UpgradeBackupLocation />
+    <PublishUrl>publish\</PublishUrl>
+    <Install>true</Install>
+    <InstallFrom>Disk</InstallFrom>
+    <UpdateEnabled>false</UpdateEnabled>
+    <UpdateMode>Foreground</UpdateMode>
+    <UpdateInterval>7</UpdateInterval>
+    <UpdateIntervalUnits>Days</UpdateIntervalUnits>
+    <UpdatePeriodically>false</UpdatePeriodically>
+    <UpdateRequired>false</UpdateRequired>
+    <MapFileExtensions>true</MapFileExtensions>
+    <ApplicationRevision>0</ApplicationRevision>
+    <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
+    <IsWebBootstrapper>false</IsWebBootstrapper>
+    <UseApplicationTrust>false</UseApplicationTrust>
+    <BootstrapperEnabled>true</BootstrapperEnabled>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="PresentationCore">
+      <RequiredTargetFramework>3.0</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="PresentationFramework">
+      <RequiredTargetFramework>3.0</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Core">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+    <Reference Include="WindowsBase">
+      <RequiredTargetFramework>3.0</RequiredTargetFramework>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="EvaluationContext.cs" />
+    <Compile Include="Extensions\LinkedListExtensions.cs" />
+    <Compile Include="Extensions\StringExtensions.cs" />
+    <Compile Include="Grammar.cs" />
+    <Compile Include="LexicTokens\FunctionCallToken.cs" />
+    <Compile Include="LexicTokens\NamedConstantToken.cs" />
+    <Compile Include="MixedToken.cs" />
+    <Compile Include="NamedConstant.cs" />
+    <Compile Include="NamedConstantCollection.cs" />
+    <Compile Include="ParameterCollection.cs" />
+    <Compile Include="ParameterExpressionEqualityComparer.cs" />
+    <Compile Include="Parser.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="ParserException.cs" />
+    <Compile Include="ParsingResult.cs" />
+    <Compile Include="Priorities.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Readers\DoubleReader.cs" />
+    <Compile Include="Readers\FunctionCallTokenReader.cs" />
+    <Compile Include="Readers\NamedConstantTokenReader.cs" />
+    <Compile Include="Readers\ParameterTokenReader.cs" />
+    <Compile Include="Readers\RegexReader.cs" />
+    <Compile Include="Readers\TokenReader.cs" />
+    <Compile Include="InputStream.cs" />
+    <Compile Include="LexicTokens\LexicTokens.cs" />
+    <Compile Include="StaticFunction.cs" />
+    <Compile Include="SyntaxTokenReaders\BinaryOpSyntaxTokenReader.cs" />
+    <Compile Include="SyntaxTokenReaders\BracketSyntaxTokenReader.cs" />
+    <Compile Include="SyntaxTokenReaders\ConstantSyntaxTokenReader.cs" />
+    <Compile Include="SyntaxTokenReaders\FunctionCallSyntaxTokenReader.cs" />
+    <Compile Include="SyntaxTokenReaders\NegateSyntaxTokenReader.cs" />
+    <Compile Include="SyntaxTokenReaders\ParameterSyntaxTokenReader.cs" />
+    <Compile Include="SyntaxTokens\BinaryOpSyntaxToken.cs" />
+    <Compile Include="SyntaxTokens\DoubleConstantSyntaxToken.cs" />
+    <Compile Include="SyntaxTokens\ParameterSyntaxToken.cs" />
+    <Compile Include="SyntaxTokens\PriorityAttribute.cs" />
+    <Compile Include="SyntaxTokens\SyntaxToken.cs" />
+    <Compile Include="SyntaxTokenReaders\SyntaxTokenReader.cs" />
+    <Compile Include="SyntaxTokens\UnaryOpSyntaxToken.cs" />
+    <Compile Include="TextModel\TextHelper.cs" />
+    <Compile Include="TokenInTextInfo.cs" />
+    <Compile Include="TokenStream.cs" />
+    <Compile Include="Tree.cs" />
+    <Compile Include="Extensions\SyntaxTreeExtensions.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <BootstrapperPackage Include="Microsoft.Net.Client.3.5">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1 Client Profile</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.5.SP1">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Windows.Installer.3.1">
+      <Visible>False</Visible>
+      <ProductName>Windows Installer 3.1</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>
