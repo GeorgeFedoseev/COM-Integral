@@ -33,8 +33,17 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="IntMiddleRect">
+      <HintPath>..\IntMiddleRect\bin\Debug\IntMiddleRect.dll</HintPath>
+    </Reference>
+    <Reference Include="MaxDerivative">
+      <HintPath>..\MaxDerivative\bin\Debug\MaxDerivative.dll</HintPath>
+    </Reference>
     <Reference Include="Parser">
       <HintPath>..\Parser\bin\Debug\Parser.dll</HintPath>
+    </Reference>
+    <Reference Include="SimpsonMethod">
+      <HintPath>..\SimpsonMethod\bin\Debug\SimpsonMethod.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
@@ -47,8 +56,12 @@
     <Reference Include="System.Net.Http" />
     <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml" />
+    <Reference Include="TrapMethod">
+      <HintPath>..\TrapMethod\bin\Debug\TrapMethod.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Async.cs" />
     <Compile Include="IntegralForm.cs">
       <SubType>Form</SubType>
     </Compile>

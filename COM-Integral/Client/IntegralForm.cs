@@ -8,8 +8,14 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
+
 // components
 using MathParser;
+using MaxDerivative;
+
+using MiddleRectsMethod;
+using TrapMethod;
+using SimpsonMethod;
 
 namespace Client {
     public partial class IntegralForm : Form {
@@ -24,16 +30,21 @@ namespace Client {
             applyMiddleRect = method_checkbox_middleRect.Checked = true;
             applyTrap = applySimpson = false;
             bottom_limit_textbox.Text = "0";
-            top_limit_textbox.Text = "1";
-            math_expression_textbox.Text = "sin(x)";
+            top_limit_textbox.Text = "pi/3";
+            math_expression_textbox.Text = "sin(x)/cos(x)/(1+sin(x))";
             epsilon_textbox.Text = "1e-6";
 
             // init components
             mathParserComp = new Parser("x"); // set "x" letter as varable in string expressions
+
+            SetStatus("Готово.");
         }
 
 
         void CalcualteIntegral() {
+            ClearOutput();
+            SetStatus("Идет вычисление...");
+
             // validate form
             var error = GetInputFieldsInvalidError();
             if (error != null) {
@@ -45,9 +56,6 @@ namespace Client {
             Func<double, double> f;
             try {
                 f = mathParserComp.Parse(math_expression_textbox.Text).ToExpression<Func<double, double>>().Compile();
-
-                WriteToResults(f.Invoke(Math.PI / 2).ToString());
-
             } catch (Exception e) {
                 SetStatus("Ошибка парсинга подынтегрального выражения.", isError:true);
                 return;
@@ -55,7 +63,49 @@ namespace Client {
 
             
 
-            
+            // parse limits
+            double b = mathParserComp.Parse(top_limit_textbox.Text).Evaluate();
+            double a = mathParserComp.Parse(bottom_limit_textbox.Text).Evaluate();
+
+            // parse eps
+            double eps = double.Parse(epsilon_textbox.Text);
+
+            // calculate max derivative on [a, b]
+            var maxDerivativeComp = new MaxDerivativeCalculator(f, a, b);
+            double maxDerivative = maxDerivativeComp.Calculate();
+            maxDerivativeComp.Dispose();
+
+           // List<IDisposable> toDispose = new List<IDisposable>();
+
+            // calculate integral with different methods
+            if (applyMiddleRect) {
+                var middleRectComp = new MiddleRectIntCalculator(a, b, maxDerivative, eps, f, new Dictionary<double, double>());
+                WriteToResults("Средние прямоугольники:");
+                WriteToResults(middleRectComp.Calculate().ToString());
+
+                //toDispose.Add(middleRectComp);
+            }
+
+            if (applyTrap) {
+                var trapComp = new TrapIntCalculator(a, b, maxDerivative, eps, f, new Dictionary<double, double>());
+                WriteToResults("Трапеции:");
+                WriteToResults(trapComp.Calculate().ToString());
+                
+               // toDispose.Add(trapComp);
+            }
+
+            if (applySimpson) {
+                var simpsonComp = new SimpsonIntCalculator(a, b, maxDerivative, eps, f, new Dictionary<double, double>());
+                WriteToResults("Симпсон:");
+                WriteToResults(simpsonComp.Calculate().ToString());
+                
+               // toDispose.Add(simpsonComp);
+            }
+
+
+            /*foreach (var d in toDispose) {
+                d.Dispose();
+            }*/
 
 
             SetStatus("Готово.");
@@ -77,10 +127,12 @@ namespace Client {
             }
 
             try {
-                double.Parse(top_limit_textbox.Text);
-                double.Parse(bottom_limit_textbox.Text);
+                //double.Parse(top_limit_textbox.Text);
+                //double.Parse(bottom_limit_textbox.Text);
+                mathParserComp.Parse(top_limit_textbox.Text);
+                mathParserComp.Parse(bottom_limit_textbox.Text);
             } catch {
-                return "Пределы должены быть числами";
+                return "Ошибка в пределах интегралов";
             }
 
             // check epsilon
@@ -107,9 +159,13 @@ namespace Client {
         }
 
 
+        void ClearOutput() {
+            results_textbox.Text = "";
+        }
+
         void WriteToResults(string message, bool clearBeforeOutput = false) {
             if (clearBeforeOutput) {
-                results_textbox.Text = "";
+                ClearOutput();
             }
 
             results_textbox.Text += message+ "\n";
@@ -126,7 +182,10 @@ namespace Client {
 
         // integrate button
         private void integrate_button_Click(object sender, EventArgs e) {
-            CalcualteIntegral();
+           
+           CalcualteIntegral();
+            
+            
         }
 
         // checkbox events
