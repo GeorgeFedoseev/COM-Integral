@@ -34,7 +34,7 @@
             this.method_checkbox_trap = new System.Windows.Forms.CheckBox();
             this.method_checkbox_simpson = new System.Windows.Forms.CheckBox();
             this.label2 = new System.Windows.Forms.Label();
-            this.textBox4 = new System.Windows.Forms.TextBox();
+            this.epsilon_textbox = new System.Windows.Forms.TextBox();
             this.pictureBox3 = new System.Windows.Forms.PictureBox();
             this.pictureBox4 = new System.Windows.Forms.PictureBox();
             this.results_textbox = new System.Windows.Forms.RichTextBox();
@@ -138,12 +138,12 @@
             this.label2.TabIndex = 9;
             this.label2.Text = "Выберите метод интегрирования:";
             // 
-            // textBox4
+            // epsilon_textbox
             // 
-            this.textBox4.Location = new System.Drawing.Point(312, 140);
-            this.textBox4.Name = "textBox4";
-            this.textBox4.Size = new System.Drawing.Size(77, 20);
-            this.textBox4.TabIndex = 10;
+            this.epsilon_textbox.Location = new System.Drawing.Point(312, 140);
+            this.epsilon_textbox.Name = "epsilon_textbox";
+            this.epsilon_textbox.Size = new System.Drawing.Size(77, 20);
+            this.epsilon_textbox.TabIndex = 10;
             // 
             // pictureBox3
             // 
@@ -204,7 +204,7 @@
             this.Controls.Add(this.results_textbox);
             this.Controls.Add(this.pictureBox4);
             this.Controls.Add(this.pictureBox3);
-            this.Controls.Add(this.textBox4);
+            this.Controls.Add(this.epsilon_textbox);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.method_checkbox_simpson);
             this.Controls.Add(this.method_checkbox_trap);
@@ -239,7 +239,7 @@
         private System.Windows.Forms.CheckBox method_checkbox_trap;
         private System.Windows.Forms.CheckBox method_checkbox_simpson;
         private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.TextBox textBox4;
+        private System.Windows.Forms.TextBox epsilon_textbox;
         private System.Windows.Forms.PictureBox pictureBox3;
         private System.Windows.Forms.PictureBox pictureBox4;
         private System.Windows.Forms.RichTextBox results_textbox;
