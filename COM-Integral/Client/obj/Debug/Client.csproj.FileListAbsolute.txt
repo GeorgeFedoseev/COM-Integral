@@ -1,0 +1,9 @@
+T:\Users\George\Projects\COM-Integral\COM-Integral\Client\bin\Debug\Client.exe.config
+T:\Users\George\Projects\COM-Integral\COM-Integral\Client\bin\Debug\Client.exe
+T:\Users\George\Projects\COM-Integral\COM-Integral\Client\bin\Debug\Client.pdb
+T:\Users\George\Projects\COM-Integral\COM-Integral\Client\obj\Debug\Client.csprojResolveAssemblyReference.cache
+T:\Users\George\Projects\COM-Integral\COM-Integral\Client\obj\Debug\Client.IntegralForm.resources
+T:\Users\George\Projects\COM-Integral\COM-Integral\Client\obj\Debug\Client.Properties.Resources.resources
+T:\Users\George\Projects\COM-Integral\COM-Integral\Client\obj\Debug\Client.csproj.GenerateResource.Cache
+T:\Users\George\Projects\COM-Integral\COM-Integral\Client\obj\Debug\Client.exe
+T:\Users\George\Projects\COM-Integral\COM-Integral\Client\obj\Debug\Client.pdb
