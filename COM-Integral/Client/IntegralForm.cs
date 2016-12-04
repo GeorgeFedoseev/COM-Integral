@@ -72,14 +72,15 @@ namespace Client {
 
             // calculate max derivative on [a, b]
             var maxDerivativeComp = new MaxDerivativeCalculator(f, a, b);
-            double maxDerivative = maxDerivativeComp.Calculate();
+            double max2ndDerivative = maxDerivativeComp.Calculate2nd();
+            double max4thDerivative = maxDerivativeComp.Calculate4th();
             maxDerivativeComp.Dispose();
 
            // List<IDisposable> toDispose = new List<IDisposable>();
 
             // calculate integral with different methods
             if (applyMiddleRect) {
-                var middleRectComp = new MiddleRectIntCalculator(a, b, maxDerivative, eps, f, new Dictionary<double, double>());
+                var middleRectComp = new MiddleRectIntCalculator(a, b, max2ndDerivative, eps, f, new Dictionary<double, double>());
                 WriteToResults("Средние прямоугольники:");
                 WriteToResults(middleRectComp.Calculate().ToString());
 
@@ -87,7 +88,7 @@ namespace Client {
             }
 
             if (applyTrap) {
-                var trapComp = new TrapIntCalculator(a, b, maxDerivative, eps, f, new Dictionary<double, double>());
+                var trapComp = new TrapIntCalculator(a, b, max2ndDerivative, eps, f, new Dictionary<double, double>());
                 WriteToResults("Трапеции:");
                 WriteToResults(trapComp.Calculate().ToString());
                 
@@ -95,7 +96,7 @@ namespace Client {
             }
 
             if (applySimpson) {
-                var simpsonComp = new SimpsonIntCalculator(a, b, maxDerivative, eps, f, new Dictionary<double, double>());
+                var simpsonComp = new SimpsonIntCalculator(a, b, max4thDerivative, eps, f, new Dictionary<double, double>());
                 WriteToResults("Симпсон:");
                 WriteToResults(simpsonComp.Calculate().ToString());
                 

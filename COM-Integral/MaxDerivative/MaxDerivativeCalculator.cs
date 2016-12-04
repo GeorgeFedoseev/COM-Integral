@@ -17,18 +17,18 @@ namespace MaxDerivative
             b = _b;
         }
 
-        double Derivative(double x) {
+        double SecondDerivative(double x, Func<double, double> _f) {
             double h = 1e-6;
-            return (f(x-h) -  2*f(x) + f(x+h))/ h / h;
+            return (_f(x-h) -  2* _f(x) + _f(x+h))/ h / h;
         }
 
-        public double Calculate() {
+        public double Calculate2nd() {
             double max = double.MinValue;
             int N = 1000;
             double step = (b - a) / N;
 
             for (int i = 0; i < N; i++) {
-                var val = Math.Abs(Derivative(a + step * i));
+                var val = Math.Abs(SecondDerivative(a + step * i, f));
               //  Console.WriteLine("derivative = "+val);
                 if (val > max) {
                     max = val;
@@ -37,5 +37,23 @@ namespace MaxDerivative
 
             return max;
         }
+
+        public double Calculate4th() {
+            double max = double.MinValue;
+            int N = 1000;
+            double step = (b - a) / N;
+
+            for (int i = 0; i < N; i++) {
+                var val = Math.Abs( SecondDerivative(a + step * i, (x) => { return SecondDerivative(x, f);  }) );
+                //  Console.WriteLine("derivative = "+val);
+                if (val > max) {
+                    max = val;
+                }
+            }
+
+            return max;
+        }
+
+
     }
 }
